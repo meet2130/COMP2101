@@ -1,8 +1,7 @@
 #! /bin/bash
 
-echo "setgid files"
 
-echo "========="
+CURRENTDATEONLY=`date +"%A"`
+CURRENTEPOCTIME=`date +"%T"`
 
-find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 3
-echo ""
+echo Current Date is: ${CURRENTDATEONLY}
