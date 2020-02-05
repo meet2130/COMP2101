@@ -11,20 +11,52 @@
 
 
 #using for loop to give multiple attemt to the user
-for value in {1..5}
-do
-#read command to take the unput of thepassword
+
 read -p "please enter your password " referenceString
 
 myString="meet"
 # using if to compare the store password and input password
 if [ "$referenceString" == "$myString" ]; then
   echo "You have entered correct password"
-  break
+
 else
   echo "Wrong Password Try again"
+  read -p "please enter your password " referenceString
+  if [ "$referenceString" == "$myString" ]; then
+    echo "You have entered correct password"
+
+  else
+    echo "Wrong Password Try again"
+    read -p "please enter your password " referenceString
+
+
+    if [ "$referenceString" == "$myString" ]; then
+      echo "You have entered correct password"
+
+    else
+      echo "Wrong Password Try again"
+      read -p "please enter your password " referenceString
+
+
+      if [ "$referenceString" == "$myString" ]; then
+        echo "You have entered correct password"
+
+      else
+        echo "Wrong Password Try again"
+        read -p "please enter your password " referenceString
+
+        if [ "$referenceString" == "$myString" ]; then
+          echo "You have entered correct password"
+
+
+
+  fi
+    fi
+      fi
+        fi
+
 fi
-done
+
 
 if [ "$referenceString" == "$myString" ]; then
   echo "Welcome"
