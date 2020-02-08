@@ -49,42 +49,12 @@ external_address=$(curl -s icanhazip.com)
 
 
 
-getint=$(lshw -class network | awk '/logical name:/{print $3}' | wc -l)
-
-for((w=1;w<=$getint;w+=1));
-
-do
-
-  interface=$(lshw -class network | awk '/logical name:/{print $3}' | awk -v z=$w 'NR==z{print $1; exit}')
-
-  if [[ $interface = lo* ]] ; then
-
-    continue ;
-
-  fi
-
-
-
-  ipv4_add=$(ip a s $interface | awk -F '[/ ]+' '/inet /{print $3}')
-
-  ipv4_hname=$(getent hosts $ipv4_address | awk '{print $2}')
-
-  network_add=$(ip route list dev $interface scope link|cut -d ' ' -f 1)
-
-  network_number=$(cut -d / -f 1 <<<"$network_address")
-
-  net_name=$(getent networks $network_number|awk '{print $1}')
-
-  echo Interface        :$interface
-
-  echo -----------------------------------------
-
-  echo Address          : $ipv4_add
-
-  echo Name             : $ipv4_hname
-
-  echo Network Address  : $network_add
-
-  echo Network Name     : $net_name
-
-done
+cat <<EOF
+System Identification Summary
+=============================
+Hostname      : $my_hostname
+Default Router: $default_router_address
+Router Name   : $default_router_name
+External IP   : $external_address
+External Name : $external_name
+EOF
