@@ -37,13 +37,13 @@
 #getting address of the router or External IP
 
 
-my_hostname=$(hostname)
+my_hname=$(hostname)
 
-default_router_address=$(ip r s default| cut -d ' ' -f 3)
+default_router_add=$(ip r s default| cut -d ' ' -f 3)
 
 default_router_name=$(getent hosts $default_router_address|awk '{print $2}')
 
-external_address=$(curl -s icanhazip.com)
+external_add=$(curl -s icanhazip.com)
 
 
 
@@ -52,9 +52,9 @@ external_address=$(curl -s icanhazip.com)
 cat <<EOF
 System Identification Summary
 =============================
-Hostname      : $my_hostname
-Default Router: $default_router_address
+Hostname      : $my_hname
+Default Router: $default_router_add
 Router Name   : $default_router_name
-External IP   : $external_address
+External IP   : $external_add
 External Name : $external_name
 EOF
