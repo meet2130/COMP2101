@@ -45,6 +45,7 @@ default_router_name=$(getent hosts $default_router_address|awk '{print $2}')
 
 external_add=$(curl -s icanhazip.com)
 
+external_name=$(getent hosts $external_address | awk '{print $2}')
 
 
 
